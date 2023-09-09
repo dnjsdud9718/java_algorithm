@@ -39,7 +39,16 @@ public class Main {
                 deque.pollLast();
             }
             deque.addLast(item); // 이때 데큐에는 추가되는 아이템의 value 보다 작은 놈들이 왼쪽에 정렬된 상태로 배치되어 있다.
-            while(item.getIndex() - deque.peekFirst().getIndex() + 1 > L) deque.poll(); // i-L+1 문제의 핵심
+            //while 대신 if 사용 가능한 이유
+            /**
+             * ★데큐의 가장 오른쪽(마지막) 아이템의 인덱스와 새로 들어오는 아이템의 인덱스 차이는 항상 1이다.★
+             * 데큐의 가장 오른쪽 아이템의 인덱스를 i, 새로 들어오는 아이템의 인데스를 i+1라고 하자.
+             * 데큐의 사이즈는 L로 가정하는데 만약 Full이라면 첫 번째 아이템 인덱스가 i-L+1이다.
+             * 따라서, i+1번째 아이템이 들어올 때, 데큐의 첫번째 아이템은 i-L+1보다 작을 수 없고 만일 i-L+1이라면
+             * i+1-(i-L+1)+1 > L
+             * L+1 > L -> TRUE!!!라서 제거된다.
+             */
+            if(item.getIndex() - deque.peekFirst().getIndex() + 1 > L) deque.poll(); // i-L+1 문제의 핵심
             wr.write(deque.peek().getValue() + " ");
         }
     }

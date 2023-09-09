@@ -1,5 +1,12 @@
 package Q1.T7;
 
+/*
+ * 1940 silver 5
+ * 주몽의 명령
+ * 2 포인터
+ * 
+ */
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Quick",
+            "request": "launch",
+            "mainClass": "Q2.T19.Quick",
+            "projectName": "JAVA_ALGORITHM_58f45512"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

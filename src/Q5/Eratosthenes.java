@@ -1,4 +1,4 @@
-package T5;
+package Q5;
 
 public class Eratosthenes {
     public static void eratosthenes(int s, int e){

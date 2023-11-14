@@ -1,4 +1,4 @@
-package T5.T38;
+package Q5.T38;
 
 /*
  * 1456 거의소수 나머지 합 구하기. silver

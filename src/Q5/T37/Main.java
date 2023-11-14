@@ -1,4 +1,4 @@
-package T5.T37;
+package Q5.T37;
 /*
  * 1929 소수 구하기
  * 

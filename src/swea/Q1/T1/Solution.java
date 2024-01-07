@@ -29,6 +29,7 @@ import java.util.stream.Stream;
 import java.io.*;
 public class Solution {
     static int[] iArr; //입력 배열
+    static int[][] memo;
     static boolean[] visited; // 방문 배열
     static int N; //입력 크기
     static int sum; 
@@ -42,7 +43,22 @@ public class Solution {
             min  = Integer.MAX_VALUE;
             N = Integer.parseInt(br.readLine());
             iArr = Stream.of(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
+            memo = new int[N+2][N+2];
             visited = new boolean[N+2];
+            // 메모이제이션
+            for(int i=0; i<N+2; i++){
+                for(int j=i+1; j<N+2; j++){
+                    int t = Math.abs(iArr[i*2]-iArr[j*2]) + Math.abs(iArr[i*2+1]-iArr[j*2+1]);
+                    memo[i][j] = t;
+                    memo[j][i] = t;
+                }
+            }
+            /*for(int i=0; i<N+2; i++){
+                for(int j=0; j<N+2; j++){
+                    System.out.printf("%d  ", memo[i][j]);
+                }
+                System.out.println();
+            }*/
             count = -1;
             dfs(iArr[0], iArr[1], 0);
             System.out.printf("#%d %d\n", ts, min);
@@ -54,17 +70,21 @@ public class Solution {
         count++;
         //System.out.printf("%d ", idx);
         if(count == N) { // DFS가 최대 깊이 도달했을 때, 즉, 모든 노드를 방문한 경우, 집까지의 거리 계산
-            int distance = Math.abs(x - iArr[2]) + Math.abs(y - iArr[3]);
-            sum += distance;
+            //int distance = Math.abs(x - iArr[2]) + Math.abs(y - iArr[3]);
+            //sum += distance;
+            sum += memo[idx][1];
             if(min > sum) min = sum;
-            sum -= distance;
+            //sum -= distance;
+            sum -= memo[idx][1];
         }
         for(int i=2; i<N+2; i++){ // 탐색
             if(!visited[i] && idx != i){ // 자기자신이 아니고 방문하지 않은 경우
-                int tmp = Math.abs(x-iArr[i*2]) + Math.abs(y-iArr[i*2+1]); //거리 계산
-                sum += tmp;
+                //int tmp = Math.abs(x-iArr[i*2]) + Math.abs(y-iArr[i*2+1]); //거리 계산
+                //sum += tmp;
+                sum += memo[idx][i];
                 dfs(iArr[i*2], iArr[i*2+1], i);
-                sum -= tmp;
+                //sum -= tmp;
+                sum-= memo[idx][i];
             }
         }
         visited[idx] = false;

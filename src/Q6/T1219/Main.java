@@ -32,20 +32,22 @@ public class Main {
                     cost[e.v] = cost[e.u]+revenue[e.v]-e.w;
                 }
             }
-            for(int j=0; j<N; j++) System.out.printf("%d ", cost[j]);
-            System.out.println();
+            // for(int j=0; j<N; j++) System.out.printf("%d ", cost[j]);
+            // System.out.println();
         }
+        boolean[] visited = new boolean[N];
         for(Edge e : edges){
             if(cost[e.u] != Integer.MIN_VALUE && cost[e.u]+revenue[e.v]-e.w > cost[e.v]){
-                //cost[e.v] = cost[e.u]+revenue[e.v]-e.w;
-                queue.add(e.u); // e.v를 넣으면 왜 안 되는지 모르겠다. u와 v모두 양수 사이클에 포함되는데...
+                visited[e.u] = true; // 큐에 삽입할 때 방문 처리를 해야 한다...BFS의 기본!!!!
+                queue.add(e.u); // e.v를 넣으면 왜 안 되는지 모르겠다. u와 v모두 양수 사이클에 포함되는데...(해결!!!)
+                
             }
         }
         if(cost[E]==Integer.MIN_VALUE) System.out.println("gg"); // 목적지로 도달 불가.
         else if(!queue.isEmpty()){
             //BFS를 통해 사이클에 포함되는 노드에서 E까지 도달가능한지 판단.
-            boolean[] visited = new boolean[N];
-            visited[queue.peek()] = true;
+            // boolean[] visited = new boolean[N]; 큐에 이미 여러 개의 노드가 들어와 있을 수 있기 때문에 이렇게 하면 안 된다!!!!
+            // visited[queue.peek()] = true; 
             while(!queue.isEmpty()){
                 int c = queue.poll();
                 if(c == E) {

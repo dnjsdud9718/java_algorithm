@@ -38,7 +38,7 @@ public class Main {
         for(Edge e : edges){
             if(cost[e.u] != Integer.MIN_VALUE && cost[e.u]+revenue[e.v]-e.w > cost[e.v]){
                 //cost[e.v] = cost[e.u]+revenue[e.v]-e.w;
-                queue.add(e.u);
+                queue.add(e.u); // e.v를 넣으면 왜 안 되는지 모르겠다. u와 v모두 양수 사이클에 포함되는데...
             }
         }
         if(cost[E]==Integer.MIN_VALUE) System.out.println("gg"); // 목적지로 도달 불가.

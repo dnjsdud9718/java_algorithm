@@ -31,7 +31,8 @@ public class Lis_DP {
         int[] A = new int[N];
         int[] D = new int[N];
         for(int i=0; i<N; i++) A[i] = Integer.parseInt(st.nextToken());
-        D[0] = 1;
+        // D[0] = 1;
+        for(int i=0; i<N; i++) D[i] = 1; // 초기에 자기자신을 포함하므로 1로 초기화 해준다ㅣ.
         for(int i=1; i<N; i++){
             for(int j=0; j<i; j++){
                 if(A[j] < A[i]) D[i] = Math.max(D[i], D[j]+1);

@@ -1,4 +1,4 @@
-package SSAFY.B.이진수_표현;
+package SSAFY.B.비트연산.이진수_표현;
 
 class Main{
     public static void main(String[] args) {

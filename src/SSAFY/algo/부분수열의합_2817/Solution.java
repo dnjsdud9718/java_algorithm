@@ -1,16 +1,19 @@
 package SSAFY.algo.부분수열의합_2817;
+/*
+ 부분 수열의 합
+ 키 포인트: 부분 수열(수열의 순서를 무시하면 안 된다.)
+ 조합으로 해결 가능하네...
 
+ */
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-import java.util.stream.Stream;
 
 public class Solution {
     static StringBuilder sb = new StringBuilder();
     static int N, K;
     static int[]src;
     static long answer;
-    static boolean visited[];
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -27,28 +30,21 @@ public class Solution {
                 src[idx] = Integer.parseInt(st.nextToken());
                 idx++;
             }
-            visited = new boolean[N+1];
             answer = 0;
-            for(int i=1; i<=N; i++){
-                perm(i, src[i]);
-            }
+            comb(1, 0);
             sb.append("#").append(ts).append(" ").append(answer).append("\n");
         }
         System.out.println(sb.toString());
         br.close();
     }
-    public static void perm(int x, int sum){
-        visited[x] = true;
-        if(sum == K) {
+    public static void comb(int idx, int sum){
+        if(sum == K){
             answer++;
-        }else if(sum < K){
-            for(int i=x+1; i<=N; i++){
-                if(!visited[i]){
-                    perm(i, sum+src[i]);
-                }
-            }
+            return;
         }
-        
-        visited[x] = false;
+        if(sum > K) return;
+        for(int i=idx; i < src.length; i++){
+            comb(i+1, sum+src[i]);
+        }
     }
 }

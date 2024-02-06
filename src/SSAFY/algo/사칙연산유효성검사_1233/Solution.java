@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
+// Tree는 Complete Binary Tree
 // 노드 유효성 검사
 // 노드가 숫자이면 -> 자식이 없어야 한다.
 // 노드가 연산자이면 자식노드 2개의 유효성 의존

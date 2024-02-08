@@ -5,74 +5,59 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Queue;
-import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
 public class Main {
-    static int N;
-    static int[][] src;
-    static boolean[][] visited;
-    static int[][] count;
     static int[] dr = {1, 0, -1, 0};
     static int[] dc = {0, 1, 0, -1};
-    static Deque<Point> queue;
+    static int N, CNT, NO;
+    static int[][] src;
     static StringBuilder sb = new StringBuilder();
-    static StringTokenizer st;
+//    이동하려는 방에 적힌 숫자가 현재 방에 적힌 숫자보다 정확히 1 더 커야 한다.
+//    숫자는 모든 방에 대해 서로 다르다.
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
-        for(int t=1; t<=T; t++){
+        for (int t = 1; t <= T; t++) {
             N = Integer.parseInt(br.readLine());
-            src = new int[N+1][N+1];
-            count = new int[N + 1][N + 1];
-            visited = new boolean[N + 1][N + 1];
-            for(int i=1; i<=N; i++){
-                st = new StringTokenizer(br.readLine());
-                int j = 1;
-                while(st.hasMoreTokens()) src[i][j++] = Integer.parseInt(st.nextToken());
+            src = new int[N][N];
+            for (int i = 0; i < N; i++) {
+                src[i] = Stream.of(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
             }
-            queue = new ArrayDeque<>();
-            for(int i=1; i<=N; i++){
-                for(int j=1; j<=N; j++){
-                    if(!visited[i][j]){
-                        visited[i][j] = true;
-                        queue.add(new Point(i, j, 1));
-                        while (!queue.isEmpty()) {
-                            Point current = queue.poll();
-                            count[current.row][current.col] = current.cnt;
-                            for(int k=0; k<4; k++){
-                                int nr = current.row + dr[k];
-                                int nc = current.col + dc[k];
-                                if(nr == 0 || nr > N || nc == 0 || nc > N) continue;
-                                if (visited[nr][nc] || Math.abs(src[nr][nc] - src[current.row][current.col]) > 1) {
-                                    continue;
-                                }
-                                visited[nr][nc] = true;
-                                queue.add(new Point(nr, nc, current.cnt+1));
-                                break;
-                            }
-                        }
-                    }
+            CNT = 0;
+            NO = 0;
+            for (int i = 0; i < N; i++) {
+                System.out.print(i+" : ");
+                for (int j = 0; j < N; j++) {
+                    bfs(i, j);
                 }
             }
-            int answer = Integer.MIN_VALUE;
-            int answer1 = 0;
-            int cr = 0, cc = 0;
-            for(int i=1; i<=N; i++){
-                for(int j=1; j<=N; j++){
-                    if(answer < count[i][j]) {
-                        answer = count[i][j];
-                        answer1 = src[i][j];
-                    }else if(answer == count[i][j]){
 
-                    }
-                }
-            }
-            sb.append("#").append(t).append(" ").append(src[cr][cc]-answer+1).append(" ").append(answer).append("\n");
+            sb.append("#").append(t).append(" ").append(NO).append(" ").append(CNT).append("\n");
         }
         System.out.println(sb.toString());
         br.close();
+    }
+    public static void bfs(int row, int col){
+        Deque<Point> queue = new ArrayDeque<>();
+        queue.offer(new Point(row, col, 1));
+        while (!queue.isEmpty()) {
+            Point current = queue.poll();
+            if (current.cnt > CNT) {
+                CNT = current.cnt;
+                NO = src[current.row][current.col]-CNT+1;
+            } else if (current.cnt == CNT) {
+                NO = Math.min(NO, src[current.row][current.col] - CNT + 1);
+            }
+            for(int i=0; i<4; i++){
+                int nr = current.row + dr[i];
+                int nc = current.col + dc[i];
+                if(nr < 0 || nr == N || nc < 0 || nc == N) continue;
+                if(src[nr][nc]-src[current.row][current.col] != 1) continue;
+                queue.offer(new Point(nr, nc, current.cnt+1));
+                break;
+            }
+        }
     }
 }
 class Point{
@@ -84,5 +69,4 @@ class Point{
         this.col = col;
         this.cnt = cnt;
     }
-
 }

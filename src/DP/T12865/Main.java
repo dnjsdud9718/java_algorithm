@@ -44,6 +44,11 @@ public class Main {
             }
         }
         for(Object x : list.toArray()) System.out.printf("%d ", (int)x);
+        System.out.println("------");
+        for (int i = 0; i < memo.length; i++) {
+            for(int x : memo[i]) System.out.print(x+" ");
+            System.out.println();
+        }
         br.close();
     }  
 }

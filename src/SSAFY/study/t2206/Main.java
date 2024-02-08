@@ -54,6 +54,7 @@ package SSAFY.study.t2206;
 (x,y)가 벽인 경우, 도달 전 상태: 벽 안 부섰다, 현재 상태와 동일한 이미 존재하는 경로 여부 파악
 
 (x,y)가 벽인 아닌 경우, 도달 전 상태 무시, 현재 상태와 동일한 이미 존재하는 경로 여부 파악
+ -> 순수 가중치가 1인 BFS이기 때문에 굳이 이미 존재하는 경로 여부를 파악할 필요가 없다. 먼저 온 놈이 먼저 도착할 것이다.
  */
 
 import java.io.BufferedReader;
@@ -110,7 +111,8 @@ public class Main {
                         queue.add(new int[]{ny,nx,wall});
                     }                   
                     // (x,y)가 벽인 경우, 도달 전 상태: 벽 안 부섰다, 현재 상태와 동일한 이미 도달했던 경로 여부 파악
-                    // 왜 마지막 조건은 필요 없는가??? visited[ny][nx][wall] == 0
+                    // 왜 마지막 조건은 필요 없는가??? visited[ny][nx][wall] == 0 -> 모든 경로가 1인 BFS닌까!!
+
                     if(map[ny][nx] == 1 && wall == 0 && visited[ny][nx][wall] == 0){
                         visited[ny][nx][wall+1] = visited[y][x][wall]+1;
                         queue.add(new int[]{ny,nx, wall +1});

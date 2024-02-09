@@ -1,4 +1,4 @@
-package SSAFY.permutation;
+package SSAFY.순조부.perm;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -27,8 +27,10 @@ public class PermTest3_swap {
             return;
         }
         for (int i = srcIdx; i < N; i++) {
+            System.out.println("***"+i+" "+srcIdx);
             swap(i, srcIdx);
             perm(srcIdx + 1);
+            System.out.println(i+" "+srcIdx+"***");
             swap(i, srcIdx);
         }
     }

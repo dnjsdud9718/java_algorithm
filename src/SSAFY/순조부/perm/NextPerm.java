@@ -1,4 +1,4 @@
-package SSAFY.permutation;
+package SSAFY.순조부.perm;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -8,8 +8,8 @@ import java.util.Scanner;
 // 만들어 지는 모든 수가 바로 순열의 경우의 수와 같다.
 // 주의 최초(NP를 적용하지 않은 가장작은 수) 도 경우의 수 중 하나.
 //정렬 후 NP적용해 나간다.
-// 비트 마스킹 적용해보기
-public class NextPerm2 {
+// nPn => n!
+public class NextPerm {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int N = sc.nextInt();
@@ -18,11 +18,11 @@ public class NextPerm2 {
 
         //step 0: sort(increasing)
         Arrays.sort(src);
-        do {
-            // 순열 이용한 처리 로직이 여기에...
-            System.out.println(Arrays.toString(src));
-        } while (nextPerm(src));
-
+       do {
+           // 순열 이용한 처리 로직이 여기에...
+           System.out.println(Arrays.toString(src));
+       } while (nextPerm(src));
+        
         sc.close();
     }
 

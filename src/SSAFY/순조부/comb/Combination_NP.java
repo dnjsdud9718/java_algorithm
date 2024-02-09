@@ -1,8 +1,8 @@
-package SSAFY.permutation;
+package SSAFY.순조부.comb;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.zip.CRC32;
+
 
 public class Combination_NP {
     static int N, K, COUNT = 0;
@@ -24,7 +24,7 @@ public class Combination_NP {
         System.out.println(Arrays.toString(index));
         while(true){
             int tgtIdx = 0;
-            for(int i=0; i<K; i++){
+            for(int i=0; i<N; i++){
                 if (index[i] == 1) {
                     tgt[tgtIdx++] = src[i];
                 }

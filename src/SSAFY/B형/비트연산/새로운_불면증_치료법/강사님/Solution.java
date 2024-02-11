@@ -1,4 +1,4 @@
-package SSAFY.B.비트연산.새로운_불면증_치료법.강사님;
+package SSAFY.B형.비트연산.새로운_불면증_치료법.강사님;
 
 import java.util.Scanner;
 import java.io.FileInputStream;

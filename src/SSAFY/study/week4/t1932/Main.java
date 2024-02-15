@@ -1,9 +1,8 @@
-package SSAFY.study.t1932;
+package SSAFY.study.week4.t1932;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /*
@@ -19,6 +18,16 @@ import java.util.StringTokenizer;
 
     depth도 같이 저장해둔다??
     bottom - up으로 올라가면서 해를 구한다. depth*(depth+1)/2만큼 연산
+
+    내 풀이 -> 일차원 배열을 이용한 트리 구조 (0) (1,2) (3,4,5) (6,7,8,9)
+    스터디장 풀이 -> 이차원 배열을 이용한 트리 구조
+    * * * * * *  src[i][j] = src[i][j]+ Math.max(src[i-1][j], src[i-1][j-1]
+    * 0 * * * *
+    * 1 2 * * *
+    * 3 4 5 * *
+    * 6 7 8 9 *
+
+
  */
 public class Main {
     static int depth;
@@ -29,12 +38,14 @@ public class Main {
         int size = depth*(depth+1)/2;
         src = new int[size];
         int idx = 0;
+        // 일차원 배열을 이용한 트리
         for (int i = 0; i < depth; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             while (st.hasMoreTokens()) {
                 src[idx++] = Integer.parseInt(st.nextToken());
             }
         }
+        // bottom - up 방식
         for (int i = depth; i >= 1; i--) {
             int k = i*(i+1)/2;
             for (int j = k-1; j > k - i; j--) {

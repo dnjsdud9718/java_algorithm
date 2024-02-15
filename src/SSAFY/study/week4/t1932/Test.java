@@ -1,4 +1,4 @@
-package SSAFY.study.t1932;
+package SSAFY.study.week4.t1932;
 
 public class Test {
     public static void main(String[] args) {

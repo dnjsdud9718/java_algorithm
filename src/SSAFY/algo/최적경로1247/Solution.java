@@ -79,6 +79,8 @@ public class Solution {
             sum = sum + Math.abs(cy - ey) + Math.abs(cx - ex);
             // 해당 경로가 최단 경로이면 min을 갱신
             min = Math.min(min, sum);
+            //return 안 적었으닌까 문제없이 진행되었네...
+//            return;
         }
         for (int i = 2; i < N+2; i++) { // 방문 가능한 고객을 확인한다.
             int ny = y[i];

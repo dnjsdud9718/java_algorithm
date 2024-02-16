@@ -27,11 +27,13 @@ import java.util.stream.Stream;
     1. 주어진 수열을 정렬
     2. 순열을 구한다.
      -> 어떻게 하면 동일한 순열을 한 번만 출력할 수 있을까???
-     -> permutation -> recursive call이 끝나고 돌아와서 다음을 찾아갈때
+     -> 
+
      ->
 
 
-
+    4 2
+    9 7 9 1
  */
 public class Main3 {
     static int N, M;

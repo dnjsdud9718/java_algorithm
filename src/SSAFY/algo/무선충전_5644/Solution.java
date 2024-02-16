@@ -86,8 +86,9 @@ public class Solution {
                 if (i != j) {
                     sum = aPower + bPower;
                 } else { // 같은 충전소
-                    // 둘 다 충전 <= 충전(K) : a(K/2) b(K/2)
-                    // 한쪽만 충전 <= 충전(K) : a(K) b(0) or a(0) b(K)
+                    // 둘 다 충전 <- 충전(K) : a(K/2) b(K/2)
+                    // 한쪽만 충전(한 쪽만 범위에 covered) <- 충전(K) : a(K) b(0) or a(0) b(K)
+                    // Why max() -> 한명만 방문했을 경우
                     sum = Math.max(aPower, bPower);
                 }
 

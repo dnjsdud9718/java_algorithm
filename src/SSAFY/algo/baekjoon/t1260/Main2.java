@@ -5,19 +5,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-/*
-    4 5 1
-    1 2
-    1 3
-    1 4
-    2 4
-    3 4
-    DFS BFS
- */
-public class Main {
+
+public class Main2 {
     static int N, M, S;
-    static List<Integer>[] list;
-    static boolean[] visited;
+    static int[][] matrix;
     static StringBuilder sb = new StringBuilder();
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,39 +16,32 @@ public class Main {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         S = Integer.parseInt(st.nextToken());
-        list = new ArrayList[N + 1];
+        matrix = new int[N + 1][N + 1];
 
-        for (int i = 1; i <= N; i++) {
-            list[i] = new ArrayList<>();
-        }
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             int u = Integer.parseInt(st.nextToken());
             int v = Integer.parseInt(st.nextToken());
             // 양방향
-            list[u].add(v);
-            list[v].add(u);
+            matrix[u][v] = matrix[v][u] = 1;
         }
-        for (int i = 1; i <= N; i++) {
-            Collections.sort(list[i]);
-        }
-//        for(int i=1; i<=N; i++) System.out.println(Arrays.toString(list[i].toArray()));
-        visited = new boolean[N + 1];
+
         dfs(S);
-//        sb.append("\n");
-        sb.setCharAt(sb.length() - 1, '\n');
-        visited = new boolean[N + 1];
+//        sb.setCharAt(sb.length() - 1, '\n');
+        sb.append("\n");
+        for (int i = 0; i <= N; i++) matrix[0][i] = 0;
+
         bfs(S);
-        sb.setLength(N);
+//        sb.setLength(sb.length());
         System.out.println(sb.toString());
         br.close();
     }
 
     public static void dfs(int u) {
-        visited[u] = true;
+        matrix[0][u] = 1;
         sb.append(u).append(" ");
-        for (int v : list[u]) {
-            if(visited[v]) continue;
+        for (int v = 1; v <= N; v++) {
+            if(matrix[0][v] == 1 || matrix[u][v] == 0) continue;
             dfs(v);
         }
     }
@@ -65,13 +49,13 @@ public class Main {
     public static void bfs(int u) {
         Deque<Integer> queue = new ArrayDeque<>();
         queue.add(u);
-        visited[u] = true;
+        matrix[0][u] = 1;
         while (!queue.isEmpty()) {
             int x = queue.poll();
             sb.append(x).append(" ");
-            for (int v : list[x]) {
-                if(visited[v]) continue;
-                visited[v] = true;
+            for (int v=1; v<=N; v++) {
+                if(matrix[0][v] == 1 || matrix[x][v] == 0) continue;
+                matrix[0][v] = 1;
                 queue.add(v);
             }
         }

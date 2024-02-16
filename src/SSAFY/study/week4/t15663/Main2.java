@@ -20,8 +20,9 @@ public class Main2 {
             sb.append('\n');
             return ;
         }
-        int num = 0;
+        int num = 0; // 현 depth번째가 가지고 있는 값.
         for(int i = 0; i < N; i++){
+            // num이 중복되면 이미 갔던 곳을 다시 도는 것.
             if(visited[i] || num == src[i]) continue;
             visited[i] = true;
             tgt[depth] = src[i];

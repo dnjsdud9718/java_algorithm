@@ -50,7 +50,8 @@ public class Main {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if(visited[i][j])continue;
-                bfs(src1, i, j, src1[i][j]);
+//                bfs(src1, i, j, src1[i][j]);
+                dfs(src1, i, j, src1[i][j]);
                 ans++;
             }
         }
@@ -60,12 +61,23 @@ public class Main {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 if(visited[i][j])continue;
-                bfs(src2, i, j, src2[i][j]);
+//                bfs(src2, i, j, src2[i][j]);
+                dfs(src2, i, j, src2[i][j]);
                 ans++;
             }
         }
         System.out.println(ans);
         br.close();
+    }
+
+    public static void dfs(char[][] src, int r, int c, char v) {
+        visited[r][c] = true;
+        for (int d = 0; d < 4; d++) {
+            int nr = r + dr[d];
+            int nc = c + dc[d];
+            if(nr <0 || nr == N || nc < 0 || nc == N || visited[nr][nc] || src[nr][nc] != v) continue;
+            dfs(src, nr, nc, v);
+        }
     }
     public static void bfs(char[][] src, int r, int c, char v) {
         Deque<int[]> queue = new ArrayDeque<>();

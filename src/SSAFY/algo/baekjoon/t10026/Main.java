@@ -93,6 +93,5 @@ public class Main {
                 queue.add(new int[]{nr, nc});
             }
         }
-
     }
 }

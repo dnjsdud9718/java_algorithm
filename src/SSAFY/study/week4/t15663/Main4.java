@@ -26,11 +26,10 @@ import java.util.stream.Stream;
 
     perm() 메서드 -> k-1번째까지 구해진 수열이 동일한 경우, 수열에 들어갈 k번째 값에 동일한 값이 두 번 이상 들어가면 안된다. 이미 해당 값을 가지고 구할 수 있는 수열(순열)을 모두 구했기 때문에 중복된 수열이 구해진다.
  */
-public class Main3 {
+public class Main4 {
     static int N, M;
     static int[] src;
     static int[] tgt;
-    static boolean[] visited;
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
@@ -39,14 +38,14 @@ public class Main3 {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         src = Stream.of(br.readLine().split(" ")).mapToInt(Integer::parseInt).toArray();
-        visited = new boolean[N];
         tgt = new int[M];
         Arrays.sort(src);
-        perm(0);
+        perm(0, 0);
         System.out.println(sb);
         br.close();
     }
-    public static void perm(int cnt) {
+
+    public static void perm(int cnt, int check) {
         if (cnt == M) {
             for(int i=0; i<M; i++)sb.append(tgt[i]).append(' ');
             sb.append('\n');
@@ -55,13 +54,10 @@ public class Main3 {
         // 왜 중복 체크가 가능한가? 초기 입력을 정렬 시켰기 때문에...!!
         int dup = -1; // duplication check
         for (int i = 0; i < N; i++) {
-            if(visited[i] || src[i] == dup) continue;
+            if((check & (1<<i)) != 0 || src[i] == dup) continue;
             tgt[cnt] = src[i];
-            visited[i] = true;
             dup = src[i];
-            perm(cnt + 1);
-            visited[i] = false;
+            perm(cnt + 1, check | (1<<i));
         }
     }
-
 }

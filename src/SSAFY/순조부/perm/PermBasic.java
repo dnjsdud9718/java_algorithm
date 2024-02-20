@@ -17,11 +17,12 @@ public class PermBasic {
         visited = new boolean[N];
         tgt = new int[K];
         System.out.print("src: ");
-        for(int i=0; i<N; i++){
-            // src[i] = (int)(Math.random()*100)+1;
-            src[i] = i+1;
-            System.out.print(src[i]+" ");
-        }
+//        for(int i=0; i<N; i++){
+//            // src[i] = (int)(Math.random()*100)+1;
+//            src[i] = i+1;
+//            System.out.print(src[i]+" ");
+//        }
+        src = new int[]{1, 7, 9, 9};
         System.out.println();
         perm(0);
         System.out.println("CNT:"+COUNT);

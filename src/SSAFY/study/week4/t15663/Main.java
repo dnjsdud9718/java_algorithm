@@ -31,7 +31,7 @@ import java.util.stream.Stream;
     [1 7][1 9][7 1][7 9][9 1][9 7] -> [9,9]가 있어야 한다.
     내 생각 -> 순열을 구해지면 이전까지 구한 모든 순열과 비교하여 중복 체크 -> 입력의 크기가 작기 때문에 가능할 것 같다. -> 문제는 통과하나 시간이 너무 오래 걸린다.
 
-    출처 :  baekjoon ID: ehdjs7878
+    다른 아이디어 -> Main2 -> 출처 :  baekjoon ID: ehdjs7878
 
  */
 public class Main {

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.StringTokenizer;
 
@@ -38,10 +39,18 @@ public class Main {
                 }
             }
         }
+//        for (int i = 0; i < R; i++) {
+//            Arrays.fill(ans[i], -1);
+//        }
         bfs(sr, sc);
         for (int i = 0; i < R; i++) {
             for (int j = 0; j < C; j++) {
-                sb.append(ans[i][j]).append(' ');
+                int val;
+                if(ans[i][j] == 0){
+                    if(map[i][j] == 0 || (i==sr && j==sc)) val = 0;
+                    else val = -1;
+                } else val = ans[i][j];
+                sb.append(val).append(' ');
             }
             sb.append('\n');
         }

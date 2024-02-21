@@ -10,7 +10,7 @@ public class Main {
     static int N, M; // 행, 열
     static int[][] map; // 원본
     static int[][] copy; // 카피본
-    static int[] dr = {0, 1, 0, -1}; // 우, 상, 좌, 하
+    static int[] dr = {0, 1, 0, -1}; // 우, 하, 좌, 상
     static int[] dc = {1, 0, -1, 0};
     static CCTV[] cctvs = new CCTV[8]; // CCTV는 최대 8개
     static int ptIdx = 0; // points 배열의 size
@@ -27,7 +27,7 @@ public class Main {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; j++) {
                 map[i][j] = Integer.parseInt(st.nextToken());
-                // CCTV가 위치한 좌표의 좌표와 종류를 cctvs 배열에 저장.
+                // CCTV가 위치한 좌표와 종류를 cctvs 배열에 저장.
                 if (1 <= map[i][j] && map[i][j] <= 5) {
                     cctvs[ptIdx++] = new CCTV(i, j, map[i][j]);
                 }

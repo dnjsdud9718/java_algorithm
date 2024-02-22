@@ -6,7 +6,7 @@ public class SubsetBasic {
     static boolean[] visited;
     static int COUNT = 0;
     public static void main(String[] args) {
-        N = 3;
+        N = 10;
         src = new int[N];
         visited = new boolean[N];
         for(int i=0; i<N ;i++) src[i] = i+1;

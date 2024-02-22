@@ -8,6 +8,15 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
+/*
+    백준 1005 ACN Craft
+
+    위상정렬 문제
+    문제 해결
+    간선을 끊어내는 순서 -> 건설 시간이 빠른 기준(누적 시간을 의미한다)
+    u1(u1을 건설하는데까지 걸린 누적 시간 100s) u2(u2를 건설하는데까지 걸린 누적 시간.10s)
+    u1 -> v, u2 -> v가 있을 때 u1 -> v 간선을 먼저 제거한다.
+ */
 public class Main {
     static int N, M, W;
     static List<Integer>[] list;
@@ -53,7 +62,7 @@ public class Main {
                     if(in[next] == 0) continue;
                     in[next]--;
                     if (in[next] == 0) {
-                        pq.add(new int[]{next, cur[1] + weights[next]});
+                        pq.add(new int[]{next, cur[1] + weights[next]}); // 누적 건설 시간을 계산
                     }
                 }
             }

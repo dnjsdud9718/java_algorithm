@@ -1,6 +1,5 @@
 package SSAFY.algo.하나로_1251;
 
-package sw;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

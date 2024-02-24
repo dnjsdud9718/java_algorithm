@@ -53,7 +53,7 @@ public class DP {
         DP = new int[N][(1 << N)];
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < (1 << N); j++) {
-                // 방문하지 않은 케이스와 방문했는데 길이 없는 경우
+                // 방문하지 않은 케이스(-1)와 방문했는데 길이 없는 경우(INF)
                 DP[i][j] = -1; // INF로 초기화하면 안된다!!
             }
         }
@@ -84,6 +84,8 @@ public class DP {
         }
         // Memoization
         // 이미 한 번 계산된 적 있는 입력이 들어오면 미리 저장해 둔 결과를 반환.
+        // INF로 초기화하면 안되는 이유 -> 방문 전 INF vs. 방문 후 경로 없어서 INF 구분할 수 있나?
+        // 방문했는데 경로가 없어서 INF이고 이때 계속 tsp() 호출한다면 DP의 효과를 볼 수 없다.
         if(DP[here][check] != -1) return DP[here][check];
         DP[here][check] = INF;
         for (int i = 0; i < N; i++) {
@@ -93,6 +95,5 @@ public class DP {
         }
         return DP[here][check];
     }
-
 }
 

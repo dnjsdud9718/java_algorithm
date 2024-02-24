@@ -36,7 +36,6 @@ import java.util.StringTokenizer;
 public class BruteForce {
     static int N;
     static int[][] W;
-    static int[] tgt;
     static long answer;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -50,7 +49,6 @@ public class BruteForce {
             }
 //            System.out.println(Arrays.toString(W[i]));
         }
-        tgt = new int[N];
         answer = tsp(0, 1 << 0);
         System.out.println(answer);
         br.close();
@@ -71,7 +69,7 @@ public class BruteForce {
          중복 발생 -> tsp(4, {1,2,3,4}), tsp(3, {1,2,3,4}), tsp(2, {1,2,3,4}) <- 비효율적이다.
      */
     public static int tsp(int here, int check) {
-        if ((check & ((1 << N) - 1)) == (1 << N) - 1) {
+        if (check == (1 << N) - 1) {
             return W[here][0]; // 시작 도시로 복귀
         }
         int answer = 987654321; // Integer.MAX_VALUE -> X -> 오버플로 발생 가능
@@ -82,5 +80,4 @@ public class BruteForce {
         }
         return answer;
     }
-
 }

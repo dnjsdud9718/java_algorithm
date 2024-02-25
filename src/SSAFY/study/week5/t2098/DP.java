@@ -3,6 +3,7 @@ package SSAFY.study.week5.t2098;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /*
@@ -58,6 +59,9 @@ public class DP {
             }
         }
         answer = tsp(0, 1 << 0);
+        for (int i = 0; i < N; i++) {
+            System.out.println(Arrays.toString(DP[i]));
+        }
         System.out.println(answer);
         br.close();
     }

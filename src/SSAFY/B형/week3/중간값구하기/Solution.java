@@ -8,7 +8,7 @@ package SSAFY.B형.week3.중간값구하기;
     3. k의 오른쪽은 k보다 커야 한다.
     max heap -> k의 왼쪽 값들을 저장하는 자료구조, max 힙의 최댓값은 k보다 작다.
     min heap -> k의 오른쪽 값들과 k를 저장, min 힙의 최솟값은 k다.
-    min heap의 크기는 항상 max heap보다 1 크게 유지된다. 
+    min heap의 크기는 항상 max heap보다 1 크게 유지된다.
  */
 import java.io.BufferedReader;
 import java.io.IOException;

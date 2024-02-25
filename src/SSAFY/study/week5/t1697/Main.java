@@ -44,7 +44,6 @@ public class Main {
                 visited[cVal/2] = true;
                 queue.add(new int[]{cVal / 2, cCnt + 1});
             }
-
         }
 
     }

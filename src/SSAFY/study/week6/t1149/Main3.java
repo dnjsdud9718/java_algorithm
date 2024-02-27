@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main3 {
     static final int INF = 987_654_321;
     static int N, answer;
     static int[][] src;
@@ -22,18 +22,25 @@ public class Main {
             for (int j = 0; j < 3; j++) {
                 src[i][j] = Integer.parseInt(st.nextToken());
             }
-        }
-        for (int i = 0; i < 3; i++) dp[0][i] = src[0][i];
-        for (int i = 1; i < N; i++) {
-            for (int color = 0; color < 3; color++) {
-                dp[i][color] = src[i][color] + Math.min(dp[i - 1][(color + 1) % 3], dp[i - 1][(color + 2) % 3]);
-            }
+            Arrays.fill(dp[i], -1);
         }
         answer = INF;
-        for (int i = 0; i < 3; i++) {
-            answer = Math.min(answer, dp[N - 1][i]);
-        }
+        answer = Math.min(answer, logic(0, 0));
+        answer = Math.min(answer, logic(0, 1));
+        answer = Math.min(answer, logic(0, 2));
         System.out.println(answer);
+
         br.close();
+    }
+
+    public static int logic(int idx, int color) {
+        if (idx == N - 1) {
+            return src[idx][color];
+        }
+        if(dp[idx][color] != -1) return dp[idx][color];
+        dp[idx][color] = INF;
+        dp[idx][color] = Math.min(dp[idx][color], src[idx][color] + logic(idx + 1, (color + 1) % 3));
+        dp[idx][color] = Math.min(dp[idx][color], src[idx][color] + logic(idx + 1, (color + 2) % 3));
+        return dp[idx][color];
     }
 }

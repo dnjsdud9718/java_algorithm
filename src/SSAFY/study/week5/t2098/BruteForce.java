@@ -72,6 +72,7 @@ public class BruteForce {
         if (check == (1 << N) - 1) {
             return W[here][0]; // 시작 도시로 복귀
         }
+        // 이미 방문했다면 -> 저장한 값을 준다.(메모이제이션)
         int answer = 987654321; // Integer.MAX_VALUE -> X -> 오버플로 발생 가능
         for (int i = 0; i < N; i++) {
             if ((check & (1 << i)) != 0) continue;

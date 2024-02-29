@@ -61,8 +61,6 @@ public class Solution {
         }
         if(idx == cIdx) return;
         for (int d = 0; d < 4; d++) {
-            int nr = cores[idx].r + dr[d];
-            int nc = cores[idx].c + dc[d];
             int wireLen = go(cores[idx], d);
             if(wireLen == -1) continue; // 여기서 backtracking(idx + 1, length, cnt); 중복이 많이 된다.
             else {
@@ -90,7 +88,7 @@ public class Solution {
         c = core.c + dc[dir];
         while (true) {
             if (r < 0 || r == N || c < 0 || c == N) break; // 전원 연결 완료
-            map[r][c] = 2;
+            map[r][c] = 1;
             res++;
             r = r + dr[dir];
             c = c + dc[dir];

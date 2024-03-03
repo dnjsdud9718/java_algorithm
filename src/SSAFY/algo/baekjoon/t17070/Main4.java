@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main4 {
     static int N;
     static int[][] map;
     static int[] dr = {0, 1, 1};
@@ -15,23 +15,18 @@ public class Main {
             {0, 1, 2},
             {1, 2, -1}
     };
-    static int[][][] dp;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         N = Integer.parseInt(br.readLine());
         map = new int[N][N];
-        dp = new int[N][N][3];
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
                 map[i][j] = Integer.parseInt(st.nextToken());
-                for (int k = 0; k < 3; k++) {
-                    dp[i][j][k] = -1;
-                }
             }
         }
-
         System.out.println(dfs(0, 1, 0));
         br.close();
     }
@@ -40,17 +35,16 @@ public class Main {
         if (r == N - 1 && c == N - 1) {
             return 1;
         }
-        if(dp[r][c][dir] != -1) return dp[r][c][dir];
-        dp[r][c][dir] = 0;
+        int answer = 0;
         for (int d = 0; d < 3; d++) {
             if(tbl[dir][d] == -1) continue;
             int nr = r + dr[tbl[dir][d]];
             int nc = c + dc[tbl[dir][d]];
             if (canGo(nr, nc, tbl[dir][d])) {
-                dp[r][c][dir] += dfs(nr, nc, tbl[dir][d]);
+                answer += dfs(nr, nc, tbl[dir][d]);
             }
         }
-        return dp[r][c][dir];
+        return answer;
     }
 
     static boolean canGo(int r, int c, int dir) {

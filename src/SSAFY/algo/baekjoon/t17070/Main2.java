@@ -23,7 +23,10 @@ public class Main2 {
             }
         }
         dp[1][2][0] = 1;
-        for (int i = 3; i <= N; i++) if(map[1][i] == 0) dp[1][i][0] = dp[1][i-1][0];
+        for (int i = 3; i <= N; i++) {
+            if (map[1][i] == 0) dp[1][i][0] = dp[1][i - 1][0];
+            else break;
+        }
         for (int i = 2; i <= N; i++) {
             for (int j = 3; j <= N; j++) {
                 if(map[i][j] ==1 ) continue;

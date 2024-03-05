@@ -36,6 +36,7 @@ public class Main {
             int v = inputs[1];
             int w = inputs[2];
             edges[i] = new Edge(u, v, w);
+
         }
         dist[1] = 0;
         boolean cycle = false;

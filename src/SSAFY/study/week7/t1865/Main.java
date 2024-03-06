@@ -23,7 +23,7 @@ public class Main {
             N = Integer.parseInt(st.nextToken());
             M = Integer.parseInt(st.nextToken());
             W = Integer.parseInt(st.nextToken());
-            edges = new Edge[(N+1)*2];
+            edges = new Edge[M*2+W];
             dist = new int[N + 1];
             for (int i = 0; i <= N; i++) {
                 dist[i] = INF;

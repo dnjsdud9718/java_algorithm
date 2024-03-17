@@ -43,7 +43,7 @@ public class Main {
             cnt = 0;
             ten = 1;
             if(N == 0) { // 크기(길이)가 1인 숫자가 0을 가질 수 있는 경우는 0뿐이다.
-                N+=10;
+                N+=10; // N: 0 , M : 4
                 cnt++;
             }
             while (N <= M) { // ==을 포함해야 하는 이유 :  N = 1000, M = 1000이라면 1000이 포함하는 0의 수를 카운트 필요
@@ -51,12 +51,12 @@ public class Main {
                     cnt += calc(N, ten);
                     N++;
                 }
-                if(N>M) break;
+                if(N>M) break; // n 4 : m 7인 경우 생각해보자.
                 while (M % 10 != 9 && N <= M) {
                     cnt += calc(M, ten);
                     M--;
                 }
-                // if(N>M) break; 비교할 필요가 없다.
+                // if(N>M) break; 비교할 필요가 없다. -> 위에서 55행
                 // ten 자리에 0을 가지는 수 계산.
                 cnt += (M/10 - N/10 +1 ) * ten;
                 N /= 10;

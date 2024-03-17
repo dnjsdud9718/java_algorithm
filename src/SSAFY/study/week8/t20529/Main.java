@@ -19,7 +19,7 @@ public class Main {
             N = Integer.parseInt(br.readLine());
             answer = Integer.MAX_VALUE;
             st = new StringTokenizer(br.readLine());
-            if (N < 48) {
+            if (N < 48) { // N < 33으로 두어도 되네...(MBTI가짓수: 16가지) 비둘기 집 생각하면 된다.
                 people = new int[N][4];
                 for (int i = 0; i < N; i++) {
                     String m = st.nextToken();

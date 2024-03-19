@@ -6,75 +6,80 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+// 완탐: 시간 초과
+// 위에서 시간 채우기 : 정답이 아니다.
 public class Main {
-    static int N, answer;
+    static int N, answer1, answer2;
     static int[][] map;
-    static Point[] points;
-    static int pLen;
+    static boolean[][] visited;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
         N = Integer.parseInt(br.readLine());
         map = new int[N][N];
-        points = new Point[101];
-        pLen = 0;
+        visited = new boolean[N][N];
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
                 int v = Integer.parseInt(st.nextToken());
-                if(v == 0) map[i][j] = 1;
-                else {
-                    map[i][j] = 0;
-                    points[pLen++] = new Point(i, j);
-                }
+                map[i][j] = v;
             }
-//            System.out.println(Arrays.toString(map[i]));
         }
-        answer = 0;
-        backtracking(0);
-        System.out.println(answer);
+        backtracking1(0, 0);
+        backtracking2(0, 0);
+//        System.out.println(answer1 + " " + answer2);
+        System.out.println(answer1+answer2);
         br.close();
     }
-
-    static void backtracking(int cnt) {
-        if (answer < cnt) {
-            answer = cnt;
+    static void backtracking1(int row, int cnt){
+        System.out.println(row);
+        for (int i = 0; i < N; i++) {
+            System.out.println(Arrays.toString(visited[i]));
         }
-        for (int i = 0; i < pLen; i++) {
-            Point p = points[i];
-            if(map[p.r][p.c] > 0) continue;
-            // 그리고
-            draw(p.r, p.c, 1);
-            // 가고
-            backtracking(cnt + 1);
-            // 지우고
-            draw(p.r, p.c, -1);
+        System.out.println();
+        if (cnt > answer1) {
+            answer1 = cnt;
+        }
+        for (int i = row; i < N; i++) {
+            for (int j = i % 2; j < N; j += 2) {
+                if(map[i][j] <= 0 || visited[i][j] || !check(i,j)) continue;
+                visited[i][j] = true;
+                backtracking1(i, cnt + 1);
+                visited[i][j] = false;
+            }
+        }
+    }
+    static void backtracking2(int row, int cnt){
+        if (cnt > answer2) {
+            answer2= cnt;
+        }
+        for (int i = row; i < N; i++) {
+            for (int j = (i+1) % 2; j < N; j += 2) {
+                if(map[i][j] <= 0 || visited[i][j] || !check(i,j)) continue;
+                visited[i][j] = true;
+                backtracking2(i, cnt + 1);
+                visited[i][j] = false;
+            }
         }
     }
 
-    static int dr[] = {-1, -1, 1, 1};
-    static int dc[] = {-1, 1, -1, 1};
-    static void draw(int r, int c, int v) {
-        map[r][c] += v;
-
-        // -1, -1
-        for (int d = 0; d < 4; d++) {
-            int nr = r;
-            int nc = c;
+    static int[] dr = {-1, -1};
+    static int[] dc = {-1, 1};
+    static boolean check(int row, int col) {
+        int nr, nc;
+        for (int d = 0; d < 2; d++) {
+            nr = row;
+            nc = col;
             while (true) {
                 nr = nr + dr[d];
                 nc = nc + dc[d];
-                if(nr < 0 || nc < 0 || nr == N || nc == N) break;
-                map[nr][nc] += v;
+                if(nr < 0 || nc < 0 || nr == N || nc==N) break;
+                if(visited[nr][nc]) return false;
             }
         }
-    }
-    static class Point {
-        int r, c;
-
-        public Point(int r, int c) {
-            this.r = r;
-            this.c = c;
-        }
+        return true;
     }
 }
+
+
+

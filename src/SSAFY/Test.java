@@ -8,5 +8,6 @@ public class Test {
             System.out.printf("%-3d ", i);
 
         }
+        System.out.println(11 >> 1);
     }
 }

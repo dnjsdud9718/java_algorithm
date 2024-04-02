@@ -7,7 +7,7 @@ package SSAFY.algo.원점으로집합_8458;
 
 import java.io.*;
 import java.util.*;
-public class Solution {
+public class Solution2 {
     static int T, N, move, answer;
     static int[] src;
     static StringBuilder sb = new StringBuilder();

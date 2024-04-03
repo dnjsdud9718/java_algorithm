@@ -39,7 +39,7 @@ public class Main {
                 answer = weights[cur];
                 break;
             }
-            if (cur > 1 && weights[cur] + 1 < weights[cur - 1]) {
+            if (cur >= 1 && weights[cur] + 1 < weights[cur - 1]) {
                 weights[cur - 1] = weights[cur] + 1;
                 queue.addLast(cur - 1);
             }

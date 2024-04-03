@@ -1,4 +1,4 @@
-package datastructure.dijkstra.t1916;
+package datastructure.shortestpath.dijkstra.t1916;
 
 import java.io.BufferedReader;
 import java.io.IOException;

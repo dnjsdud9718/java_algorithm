@@ -1,4 +1,4 @@
-package SSAFY.study.week5.t1697;
+package SSAFY.study.숨바꼭질.t1697;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

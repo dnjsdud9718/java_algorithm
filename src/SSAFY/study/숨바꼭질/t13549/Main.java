@@ -1,10 +1,9 @@
-package SSAFY.study.week6.t13549;
+package SSAFY.study.숨바꼭질.t13549;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.Scanner;
-
 /*
     baekjoon 13549
     숨바꼭질 3
@@ -14,11 +13,10 @@ import java.util.Scanner;
     다익스트라 가능하지만 0/1 BFS가 O(V+E)로 더 빠르다.
 
  */
-public class Main2 {
+public class Main {
     static final int INF = 987_654_321;
     static int N, K;
     static int[] weights;
-    static boolean[] visited;
     static Deque<Integer> queue = new ArrayDeque<>();
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -29,7 +27,6 @@ public class Main2 {
             return;
         }
         weights = new int[K + 2];
-        visited = new boolean[K + 2];
         Arrays.fill(weights, INF);
 
         weights[N] = 0;
@@ -38,14 +35,11 @@ public class Main2 {
         // 0/1 BFS 간선의 가중치가 0 또는 1로만 구성된 BFS
         while (!queue.isEmpty()) {
             int cur = queue.removeFirst();
-            if(visited[cur]) continue;
-            visited[cur] = true;
-
             if(cur == K) {
                 answer = weights[cur];
                 break;
             }
-            if (cur > 1 && weights[cur] + 1 < weights[cur - 1]) {
+            if (cur >= 1 && weights[cur] + 1 < weights[cur - 1]) {
                 weights[cur - 1] = weights[cur] + 1;
                 queue.addLast(cur - 1);
             }

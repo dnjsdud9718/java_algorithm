@@ -24,6 +24,10 @@ public class Main2{
             t[i] = tt;
             v[i] = vv;
         }
+        /*
+            bootom - up
+            dp[k] : k분 최대 수익
+         */
         for(int i=0;i < N; i++){
             if( i+t[i] <= N ){
                 dp[i+t[i]] = Math.max(dp[i+t[i]], dp[i]+v[i]);
